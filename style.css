@@ -1,0 +1,234 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1em 0;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+main {
+    padding: 1em;
+}
+
+footer {
+    text-align: center;
+    padding: 1em 0;
+    background-color: #333;
+    color: #fff;
+    position: relative; /* Changed from fixed to relative for simplicity */
+    bottom: 0;
+    width: 100%;
+}
+
+/* Product List - index.html */
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+    justify-content: center;
+}
+
+.product-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 1em;
+    width: calc(33.333% - 2em); /* Adjust for gap, assuming 3 columns */
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 0.5em;
+}
+
+.product-card h2 {
+    font-size: 1.2em;
+    margin-top: 0;
+}
+
+/* Cart Link Section - index.html */
+.cart-link {
+    text-align: center;
+    margin-top: 2em;
+}
+
+.cart-link a {
+    text-decoration: none;
+    background-color: #28a745;
+    color: white;
+    padding: 0.75em 1.5em;
+    border-radius: 5px;
+    font-size: 1.1em;
+}
+
+.cart-link a:hover {
+    background-color: #218838;
+}
+
+/* Cart Page - cart.html */
+.cart-items {
+    background-color: #fff;
+    padding: 1em;
+    border-radius: 5px;
+    margin-bottom: 1em;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5em 0;
+    border-bottom: 1px solid #eee;
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item .product-name {
+    flex-grow: 1;
+}
+
+.cart-item .product-price {
+    margin-left: 1em;
+    min-width: 60px; /* Ensure alignment */
+    text-align: right;
+}
+
+.cart-item .product-quantity {
+    margin-left: 1em;
+    min-width: 80px; /* Ensure alignment */
+}
+
+.cart-total {
+    background-color: #fff;
+    padding: 1em;
+    border-radius: 5px;
+    text-align: right;
+    margin-bottom: 1em;
+}
+
+.cart-total h2 {
+    margin-top: 0;
+    font-size: 1.5em;
+}
+
+.cart-actions {
+    text-align: center;
+}
+
+.cart-actions a {
+    text-decoration: none;
+    color: #007bff;
+    margin-left: 1em;
+}
+
+.cart-actions a:hover {
+    text-decoration: underline;
+}
+
+/* Buttons */
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.75em 1.5em;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#validate-order {
+    background-color: #28a745; /* Green for validation */
+}
+
+#validate-order:hover {
+    background-color: #218838;
+}
+
+
+/* Responsiveness */
+@media (max-width: 992px) {
+    .product-card {
+        width: calc(50% - 2em); /* 2 columns for tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.8em;
+    }
+
+    .product-card {
+        width: calc(100% - 1em); /* 1 column for smaller tablets/large phones */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cart-item .product-price,
+    .cart-item .product-quantity {
+        margin-left: 0;
+        margin-top: 0.25em;
+        text-align: left;
+    }
+
+    .cart-total {
+        text-align: center;
+    }
+
+    .cart-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cart-actions a {
+        margin-left: 0;
+        margin-top: 0.5em;
+    }
+
+    button, .cart-link a {
+        width: 100%;
+        padding: 1em; /* Easier to tap */
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    body {
+        font-size: 0.9em;
+    }
+
+    button, .cart-link a {
+        font-size: 1.1em; /* Ensure text is readable */
+    }
+}
