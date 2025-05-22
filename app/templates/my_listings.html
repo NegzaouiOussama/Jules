@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>My Listings</h1>
+    {% if listings %}
+        <ul>
+        {% for listing in listings %}
+            <li>
+                {{ listing.origin }} to {{ listing.destination }} at {{ listing.departure_time.strftime('%Y-%m-%d %H:%M') }}
+                - {{ listing.available_seats }} seats, €{{ "%.2f"|format(listing.price) }}
+                <a href="{{ url_for('driver.edit_listing', listing_id=listing.id) }}">Edit</a>
+                <form method="POST" action="{{ url_for('driver.delete_listing', listing_id=listing.id) }}" style="display:inline;">
+                    <input type="submit" value="Delete" onclick="return confirm('Are you sure?')">
+                </form>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>You have not created any listings yet.</p>
+    {% endif %}
+    <a href="{{ url_for('driver.create_listing') }}">Create New Listing</a>
+{% endblock %}

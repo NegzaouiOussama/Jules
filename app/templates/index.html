@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Welcome to the Carpooling App!</h1>
+    <p>Find a ride or offer one.</p>
+    <p><a href="{{ url_for('passenger.browse_listings') }}">Browse Listings</a></p>
+    {% if not current_user.is_authenticated %}
+        <p><a href="{{ url_for('auth.register') }}">Register</a> or <a href="{{ url_for('auth.login') }}">Login</a></p>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Available Listings</h1>
+    {% if listings %}
+        <ul>
+        {% for listing in listings %}
+            <li>
+                <a href="{{ url_for('passenger.view_listing', listing_id=listing.id) }}">
+                    {{ listing.origin }} to {{ listing.destination }} with {{ listing.driver.username }}
+                </a>
+                - Departs: {{ listing.departure_time.strftime('%Y-%m-%d %H:%M') }}, Seats: {{ listing.available_seats }}, Price: €{{ "%.2f"|format(listing.price) }}
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No listings available at the moment.</p>
+    {% endif %}
+{% endblock %}

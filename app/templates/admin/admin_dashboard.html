@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Admin Dashboard</h1>
+    <p>Welcome, {{ current_user.username }}!</p>
+    <ul>
+        <li><a href="{{ url_for('admin.view_users') }}">View All Users</a></li>
+        <li><a href="{{ url_for('admin.view_listings') }}">View All Listings</a></li>
+        <li><a href="{{ url_for('admin.view_reservations') }}">View All Reservations</a></li>
+    </ul>
+{% endblock %}

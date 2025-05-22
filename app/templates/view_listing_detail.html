@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Listing Details</h1>
+    <p><strong>Driver:</strong> {{ listing.driver.username }}</p>
+    <p><strong>Origin:</strong> {{ listing.origin }}</p>
+    <p><strong>Destination:</strong> {{ listing.destination }}</p>
+    <p><strong>Departure Time:</strong> {{ listing.departure_time.strftime('%Y-%m-%d %H:%M') }}</p>
+    <p><strong>Available Seats:</strong> {{ listing.available_seats }}</p>
+    <p><strong>Price per seat:</strong> €{{ "%.2f"|format(listing.price) }}</p>
+
+    {% if current_user.is_authenticated and current_user.role == 'passenger' and listing.available_seats > 0 %}
+        <h2>Reserve Seats</h2>
+        <form method="POST" action="{{ url_for('passenger.reserve_listing', listing_id=listing.id) }}">
+            {{ form.hidden_tag() }}
+            <p>{{ form.seats_reserved.label }}<br>{{ form.seats_reserved(size=5) }}
+            {% for error in form.seats_reserved.errors %}<span>[{{ error }}]</span>{% endfor %}</p>
+            <p>{{ form.submit() }}</p>
+        </form>
+    {% elif listing.available_seats == 0 %}
+        <p>This listing has no available seats.</p>
+    {% endif %}
+    <a href="{{ url_for('passenger.browse_listings') }}">Back to all listings</a>
+{% endblock %}

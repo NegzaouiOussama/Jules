@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>My Reservations</h1>
+    {% if reservations %}
+        <ul>
+        {% for reservation in reservations %}
+            <li>
+                Ride with {{ reservation.driver_username }}: {{ reservation.origin }} to {{ reservation.destination }}
+                - Seats: {{ reservation.seats_reserved }}, Departs: {{ reservation.departure_time.strftime('%Y-%m-%d %H:%M') }}
+                <a href="{{ url_for('passenger.view_listing', listing_id=reservation.listing_id) }}">View Listing</a>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>You have not made any reservations yet.</p>
+    {% endif %}
+    <a href="{{ url_for('passenger.browse_listings') }}">Browse Listings</a>
+{% endblock %}

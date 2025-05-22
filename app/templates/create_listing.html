@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>{% if form.instance %}Edit Listing{% else %}Create New Listing{% endif %}</h1>
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.origin.label }}<br>
+            {{ form.origin(size=40) }}<br>
+            {% for error in form.origin.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.destination.label }}<br>
+            {{ form.destination(size=40) }}<br>
+            {% for error in form.destination.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.departure_time.label }}<br>
+            {{ form.departure_time(placeholder='YYYY-MM-DD HH:MM:SS') }}<br>
+            {% for error in form.departure_time.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.available_seats.label }}<br>
+            {{ form.available_seats() }}<br>
+            {% for error in form.available_seats.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.price.label }}<br>
+            {{ form.price() }}<br>
+            {% for error in form.price.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
+{% endblock %}
